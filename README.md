@@ -20,7 +20,7 @@ Doomify is a Chrome extension that converts long webpage content into short, scr
 1.  **Clone or download** the repository to your local machine:
 
     ```bash
-    git clone [https://github.com/maestrogamboa/doomify-extension.git](https://github.com/maestrogamboa/doomify-extension.git)
+    git clone https://github.com/maestrogamboa/doomify-extension.git
     cd doomify-extension
     ```
 
