@@ -15,25 +15,38 @@ Doomify is a Chrome extension that converts long webpage content into short, scr
 
 ## Installation
 
-To install Doomify as an unpacked extension in Chrome:
+### Installation: Project Setup
 
-1.  **Clone or download** this repository:
+1.  **Clone or download** the repository to your local machine:
 
     ```bash
     git clone [https://github.com/your-username/doomify-extension.git](https://github.com/your-username/doomify-extension.git)
+    cd doomify-extension
     ```
 
-2.  Open Chrome and go to the Extensions page:
+2.  **Install dependencies** (This command reads the project's `package.json` file to install all necessary packages):
+
+    ```bash
+    npm install
+    # OR
+    # yarn install
+    ```
+
+### Installation: Chrome Setup
+
+To load Doomify in your browser:
+
+1.  Open Chrome and go to the Extensions page:
 
     ```
     chrome://extensions/
     ```
 
-3.  Toggle on **Developer mode** (top right).
+2.  Toggle on **Developer mode** (top right).
 
-4.  Click the **Load unpacked** button.
+3.  Click the **Load unpacked** button.
 
-5.  Select the folder containing the Doomify repository you cloned in step 1.
+4.  Select the **root directory of the cloned repository** (the `doomify-extension` folder itself, which contains the `manifest.json` file).
 
 ✅ The extension will now appear in your browser toolbar.
 
@@ -45,7 +58,7 @@ To install Doomify as an unpacked extension in Chrome:
 2.  Click the **Doomify extension icon**.
 3.  Choose a **tone** you'd like the summary to take.
 4.  Click **Feed Me**.
-5.  Your scrollable, punchy summary will appear in the side panel.
+5.  Your scrollable, punchy summary will appear in the side panel. ⚡
 
 ---
 
@@ -58,4 +71,4 @@ To install Doomify as an unpacked extension in Chrome:
 | `tabs` | Identifies which tab is being summarized. |
 | `scripting` | Injects a script to extract text for processing. |
 
-**Privacy Note:** No data is collected or sent anywhere. All processing happens locally in your browser. 
+**Privacy Note:** No data is collected or sent anywhere. All processing happens locally in your browser. 🔒
