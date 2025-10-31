@@ -58,7 +58,7 @@ To load Doomify in your browser:
 2.  Click the **Doomify extension icon**.
 3.  Choose a **tone** you'd like the summary to take.
 4.  Click **Feed Me**.
-5.  Your scrollable, punchy summary will appear in the side panel. ⚡
+5.  Your scrollable, punchy summary will appear in the side panel.
 
 ---
 
@@ -71,4 +71,4 @@ To load Doomify in your browser:
 | `tabs` | Identifies which tab is being summarized. |
 | `scripting` | Injects a script to extract text for processing. |
 
-**Privacy Note:** No data is collected or sent anywhere. All processing happens locally in your browser. 🔒
+**Privacy Note:** No data is collected or sent anywhere. All processing happens locally in your browser.
