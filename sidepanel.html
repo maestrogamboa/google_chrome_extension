@@ -1,84 +1,111 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, sans-serif;
-      background-color: #f9fafb;
-      color: #222;
-      box-sizing: border-box;
-      overflow: hidden; /* Keeps layout stable */
-    }
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        font-family: system-ui, sans-serif;
+        background-color: #f9fafb;
+        color: #222;
+        box-sizing: border-box;
+        overflow: hidden; /* Keeps layout stable */
+      }
 
-    h2 {
-      text-align: center;
-      margin: 0;
-      padding: 1rem;
-      background: #111827;
-      color: #fff;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
+      h2 {
+        text-align: center;
+        margin: 0;
+        padding: 1rem;
+        background: #111827;
+        color: #fff;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+      }
 
-    button {
-      align-self: center;
-      margin: 0.5rem 0;
-      padding: 0.6rem 1.2rem;
-      border: none;
-      border-radius: 8px;
-      background-color: #2563eb;
-      color: white;
-      cursor: pointer;
-      font-weight: 500;
-      transition: background 0.2s ease;
-      flex-shrink: 0;
-    }
+      button {
+        align-self: center;
+        margin: 0.5rem 0;
+        padding: 0.6rem 1.2rem;
+        border: none;
+        border-radius: 8px;
+        background-color: #2563eb;
+        color: white;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background 0.2s ease;
+        flex-shrink: 0;
+      }
 
-    button:hover {
-      background-color: #1e40af;
-    }
+      button:hover {
+        background-color: #1e40af;
+      }
 
-    #output, #image-output {
-      overflow-y: auto;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
+      select {
+        align-self: center;
+        margin: 0.5rem 0;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
 
-    #output::-webkit-scrollbar,
-    #image-output::-webkit-scrollbar {
-      width: 6px;
-    }
+      #output, #image-output {
+        overflow-y: auto;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
 
-    #output::-webkit-scrollbar-thumb,
-    #image-output::-webkit-scrollbar-thumb {
-      background: rgba(0,0,0,0.2);
-      border-radius: 3px;
-    }
+      #output::-webkit-scrollbar,
+      #image-output::-webkit-scrollbar {
+        width: 6px;
+      }
 
-    img {
-      max-width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
+      #output::-webkit-scrollbar-thumb,
+      #image-output::-webkit-scrollbar-thumb {
+        background: rgba(0,0,0,0.2);
+        border-radius: 3px;
+      }
 
-    .my-paragraph{
-      font-size: 18px;
-      font-weight: bold;
-    }
-  </style>
+      img {
+        max-width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      }
+
+      .my-paragraph{
+        font-size: 18px;
+        font-weight: bold;
+      }
+    </style>
   </head>
   <body>
     <h2>Doomify</h2>
-    <button id="fetchContent">Fetch</button>
-    <div id="output">Page content will appear here...</div>
+
+    <!-- Fetch Button -->
+   <div id="controls" style="display:flex; justify-content:center; align-items:center; gap:1rem; margin:0.5rem 0;">
+  <!-- Fetch Button -->
+  <button id="fetchContent">Feed Me 🍿</button>
+
+  <!-- Tone Dropdown -->
+  <label for="toneSelect" style="margin:0;">Tone:</label>
+  <select id="toneSelect">
+    <option value="funny">Funny</option>
+    <option value="fun">Fun</option>
+    <option value="dramatic">Dramatic</option>
+    <option value="dark">Dark</option>
+    <option value="light">Light-hearted</option>
+  </select>
+</div>
+
+    <div id="output">Click the fetch button to Doomify Content</div>
     <div id="image-output"></div>
+    <p id="scroll-status"></p>
 
     <script type="module" src="sidepanel.js"></script>
   </body>

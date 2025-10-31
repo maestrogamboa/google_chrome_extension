@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Side Panel Example",
+  "name": "Doomify",
   "version": "1.0",
-  "description": "A simple Chrome extension with a side panel",
+  "description": "Rewrite articles into short, addictive doomscroll-style sections with images and emojis",
   "permissions": ["sidePanel", "tabs", "activeTab", "scripting"],
   "background": {
     "service_worker": "background.js"

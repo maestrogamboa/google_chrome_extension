@@ -1,18 +1,22 @@
 let stopGeneration = false;
 const fetchButton = document.getElementById("fetchContent");
+const scrollStatus = document.getElementById("scroll-status");
+scrollStatus.textContent = ""
+const toneSelect = document.getElementById("toneSelect");
 
 fetchButton.addEventListener("click", async () => {
   // If generation is running and user clicks again → stop it
-  if (fetchButton.textContent === "Stop") {
+  if (fetchButton.textContent === "Pause Feed ✋") {
     stopGeneration = true;
-    fetchButton.textContent = "Fetch Content";
-    console.log("🛑 Stopping generation...");
+    fetchButton.textContent = "Feed Me 🍿";
+    console.log("Stopping generation...");
     return;
   }
 
   // Otherwise → start generation
   stopGeneration = false;
-  fetchButton.textContent = "Stop";
+  fetchButton.textContent = "Pause Feed ✋";
+  scrollStatus.textContent = "CONTENT INCOMING.."
 
   const output = document.getElementById("output");
   const imageOutput = document.getElementById("image-output");
@@ -24,7 +28,7 @@ fetchButton.addEventListener("click", async () => {
   // Send message to content script
   chrome.tabs.sendMessage(tab.id, { action: "getPageContent" }, (response) => {
     if (chrome.runtime.lastError) {
-      console.warn("⚠️ No content script found:", chrome.runtime.lastError.message);
+      console.warn("No content script found:", chrome.runtime.lastError.message);
       output.textContent = "Could not connect to the page. Try refreshing it.";
       fetchButton.textContent = "Fetch Content";
       return;
@@ -32,7 +36,7 @@ fetchButton.addEventListener("click", async () => {
 
     if (!response || !response.content) {
       output.textContent = "No content received.";
-      fetchButton.textContent = "Fetch Content";
+      fetchButton.textContent = "Feed Me 🍿";
       return;
     }
 
@@ -40,11 +44,13 @@ fetchButton.addEventListener("click", async () => {
     generateDoomscrollWithImages(response.content)
       .then(() => {
         // Once finished, reset button
-        fetchButton.textContent = "Fetch Content";
+        fetchButton.textContent = "Feed Me 🍿";
+         scrollStatus.textContent = "CONTENT STOPPED..."
       })
       .catch((err) => {
         console.error("Generation error:", err);
-        fetchButton.textContent = "Fetch Content";
+        fetchButton.textContent = "Feed Me 🍿";
+         scrollStatus.textContent = "CONTENT STOPPED..."
       });
   });
 });
@@ -67,6 +73,8 @@ async function generateDoomscrollWithImages(articleText) {
   const session = await LanguageModel.create({ temperature: 0.8, topK: 40 });
   const prompt = `
 Rewrite the content of this webpage as a series of short, standalone sections designed for doomscroll-style reading.
+
+Tone:${toneSelect}
 
 Each section should:
 
@@ -97,6 +105,7 @@ ${articleText}
     if (stopGeneration) {
       console.log("Generation stopped by user.");
       await session.destroy?.();
+      scrollStatus.textContent = "CONTENT STOPPED..."
       break;
     }
 
@@ -131,7 +140,7 @@ async function appendTextAndImage(output, text) {
   chunkContainer.appendChild(textEl);
 
   try {
-    const res = await fetch("http://localhost:3000/generate-text-and-image", {
+    const res = await fetch("https://gen-lang-client-0334461813.ey.r.appspot.com/generate-text-and-image", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ prompt: text }),
